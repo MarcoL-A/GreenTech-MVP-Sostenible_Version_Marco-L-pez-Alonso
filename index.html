@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Landing page sostenible de GreenTech" />
+    <title>Salvemos el Planeta - GreenTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      /* Uso de variables CSS nativas (:root), evitando usar preprocesadores pesados. */
+      :root {
+        --primary-green: #28a745;
+        --dark-green: #1e7e34;
+        --bg-light: #f4fdf4;
+        --text-white: #ffffff;
+      }
+      /* Añadido fuentes de respaldo (system-ui, sans-serif) por si falla la red, así el sistema no tiene que hacer un esfuerzo extra buscando fuentes inexistentes. */
+      body {
+        font-family: "Montserrat", system-ui, sans-serif;
+        background-color: var(--bg-light);
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .hero-section {
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        color: var(--text-white);
+        overflow: hidden;
+      }
+      /* La imagen ya no necesita de un CSS, sino una etiqueta <img> en HTML. */
+      .hero-bg {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(0.6); /* Sustituye al costoso text-shadow que también consume mucha batería del movil. */
+      }
+      /* La función clamp() ajusta el tamaño del texto según la pantalla automáticamente (mínimo, ideal y máximo). */
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 700;
+        margin: 0;
+      }
+      p.lead {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: 400;
+        margin-top: 1rem;
+      }
+      .btn-eco {
+        background-color: var(--primary-green);
+        color: var(--text-white);
+        border: 2px solid var(--dark-green);
+        padding: 15px 40px;
+        font-size: 1.5rem;
+        font-family: inherit;
+        font-weight: 700;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: background-color 0.3s ease;
+      }
+      .btn-eco:hover {
+        background-color: var(--dark-green);
+      }
+      /* SVG Inline: Elimina la necesidad de cargar los 30MB de FontAwesome */
+      .icon-leaf {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+      footer {
+        background-color: #212529;
+        color: var(--text-white);
+        text-align: center;
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero-section">
+      <img 
+        src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=60&w=1200&fm=webp&auto=format" 
+        alt="Paisaje de bosque verde" 
+        class="hero-bg" 
+        loading="lazy" 
+      />
+      <h1>Salvemos el Planeta</h1>
+      <p class="lead">Únete a la revolución verde de GreenTech.</p>
+      <button class="btn-eco">
+        <svg class="icon-leaf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M272 96c-78.6 0-145.1 81.5-167.7 122.4c-33.6 61.1-13.8 136.9 54.2 193.9l-36.9 36.9c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l44.1-44.1c16.4 5.2 34.3 8.3 52.4 8.3c88.4 0 160-71.6 160-160V96H272zM232 384c-53 0-96-43-96-96c0-35.4 21.6-66.2 52.6-83.3l12 25.1c-16.1 11.2-26.6 29.8-26.6 50.2c0 35.3 28.7 64 64 64c20.4 0 39-10.5 50.2-26.6l25.1 12C298.2 362.4 267.4 384 232 384z"/>
+        </svg>
+        Quiero ayudar
+      </button>
+    </main>
+    <footer id="footer"></footer>
+    <script>
+      /* En lugar de importar Moment.js que hace uso de 70KB, usamos el objeto Date nativo del navegador que gasta 0KB para calcular el año actual.Lo que ayuda a que móviles de gama baja funcionen mucho mejor. */
+      document.addEventListener("DOMContentLoaded", () => {
+        const year = new Date().getFullYear();
+        document.getElementById("footer").innerHTML = 
+          `GreenTech Solutions &copy; ${year} - Haciendo un mundo mejor (y respetando tu hardware)`;
+      });
+    </script>
+  </body>
+</html>
